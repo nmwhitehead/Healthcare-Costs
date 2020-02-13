@@ -1,11 +1,11 @@
 # The Increasing Cost of Healthcare in America
 
-A while back, I was looking for some real-world data to use to enhance my skills in Supervised Machine Learning with Sklearn  and graphing with Matplotlib. At that time, politics happened to be happening, and the topic of healthcare was brought up. A lot. And so, I searched for and found The National Health Expenditure Accounts (NHEA)'s data on U.S. spending on healthcare since 1960 on [CMS.gov](https://www.cms.gov/Research-Statistics-Data-and-Systems/Statistics-Trends-and-Reports/NationalHealthExpendData/NationalHealthAccountsHistorical)
+A while back, I was looking for some real-world data to use to enhance my skills in Supervised Machine Learning with Sklearn  and graphing with Matplotlib. At the time, politics was happening, and the topic of healthcare was brought up. A lot. And so, I searched for and found The National Health Expenditure Accounts (NHEA)'s data on U.S. spending on healthcare since 1960 on [CMS.gov](https://www.cms.gov/Research-Statistics-Data-and-Systems/Statistics-Trends-and-Reports/NationalHealthExpendData/NationalHealthAccountsHistorical)
 
 
 ## Graphing Time
 
-After cleaning the data to remove the commas and convert the strings to floats, I did some Exporitory Data Analysis by making some simple graphs to look at how the cost of healthcare has changed. I started with the obvious graph of the total amount of spending per year.
+After cleaning the data to remove the commas and convert the strings to floats, I did some Exploratory Data Analysis by making some simple graphs to look at how the cost of healthcare has changed. I started with the obvious graph of the total amount of spending per year.
 
 <img src='Graphs/Healthcare_Cost.png'/>
 
@@ -47,9 +47,11 @@ plt.text(54, healthcare_vs_gdp[-1]+0.5, f'2018: {healthcare_vs_gdp[-1]}%', fonts
 
 Unlike the costs per year, this data is relatively linear, so I decided to use this to practice Sklearns Linear Regression and Train Test Split. 
 
-I ran the test a few times with varying sizes of the training and testing data to see which ones would overestimate and which would underestimate the percent GDP in 2018
+## Time For Some Sklearning
 
-I started by importing the necesary LinearRegression from sklearn.linear_model and train_test_split from sklearn.model_selection.
+I ran the test a few times with varying sizes of the training and testing data to see which ones would overestimate and which would underestimate the percent of GDP in 2018
+
+I started by importing the necessary LinearRegression from sklearn.linear_model and train_test_split from sklearn.model_selection.
 
 ```
 # I renamed the dataset to indexed_dataset after some cleaning, which you can view in the main code.
@@ -98,11 +100,11 @@ plt.text(2011, lr_gdp.predict(X_test)[-1]-0.7, f'Predicted: {round(lr_gdp.predic
 
 As you can see, using 50% of the data as training data underestimated and the 90% overestimated, as did 75% and 60%, but that's more graphs than you need to see. 
 
-What this means is that trends since the late 80s have pointed towards a faster growth than we have seen in the last few years, and that older data pointed towards a more conservative increase. It also means that those sporadic multi-year flatlines made the data's predictions a lot wilder, and a lot less accurate.
+What this means is that trends since the late 80s have pointed towards a faster growth than we have seen in the last few years, and that older data pointed towards a more conservative, slow increase. It also means that the sporadic multi-year flatlines followed by fast spikes, which I marked earlier, have made the data's predictions a lot wilder, and a lot less accurate.
 
 ## Prediction Time
 
-The next step was of course to predict 10 years out (from 2018, not 2020, obviously) with the Linear Regression models we had already created. I ran this a few times with varying amounts of training data, but felt it would be biased to only show a high of a low estimator.
+The next step was to predict 10 years out (from 2018, not 2020, obviously) with the Linear Regression models we had already created. I ran this a few times with varying amounts of training data, but felt it would be biased to only show a high or low estimator.
 
 ```
 # Year and None values to enable graph to look into the future
@@ -114,7 +116,7 @@ y_gdp_future = np.append(y_gdp, [[None], [None], [None], [None], [None], [None],
 X_test_future = X_test_future.reshape(-1, 1)
 X_future = X_future.reshape(-1, 1)
 
-# Again, small channges we made to the graph code to alter text and it's placement on the graph
+# Again, small changes were made to the graph code to alter text and it's placement on the graph
 plt.figure(figsize=(20,16))
 plt.title("When Older Data is Used, the Machine Predicts Slow Growth Over Time", fontsize=27, pad=20)
 
@@ -139,15 +141,15 @@ plt.text(2020, lr_gdp.predict(X_test_future)[-1]+0.3, f'Predicted: {round(lr_gdp
 
 The first graph, which is a continuation of the previous predictor using 50% of the given data as training data, has a much lower estimator for the increase by 2028. I want to make it clear that I do not believe this to be the more accurate estimator, despite is being closer to correct on the costs in 2018. The fact that is uses older data, and less data, is the reason that it greatly underestimated most of the years since the late 80s and was seemingly only correct at the end of flatline years. But I still wanted to leave this graph here as a low estimator.
 
-The second graph, which uses 99% of the data given as training data, has a much grimmer prediction for 2028. It seems to be predicting that we are nearly the end of the current flatline. The machine predicted very similarly when the training data was 75% of the total data, 80% of the total data, and 90% of the total data.
+The second graph, which uses 99% of the data given as training data, has a much grimmer prediction for 2028. It seems to be predicting that we are nearly the end of the current flatline and should expect a spike within the next few years. The machine predicted very similarly when the training data was 75% of the total data, 80% of the total data, and 90% of the total data.
 
 
 ## Ranting Time
 
-Until this point, I have made effort to remain unbiased and to provide facts, not opinions. But I’d like to end by posting [one last graph]( https://www.nytimes.com/interactive/2016/12/16/business/economy/nine-new-findings-about-income-inequality-piketty.html), which I didn’t make myself. 
+Until this point, I have made effort to remain unbiased and to provide only facts, not opinions But I’d like to end by posting [one last graph]( https://www.nytimes.com/interactive/2016/12/16/business/economy/nine-new-findings-about-income-inequality-piketty.html), which I didn’t make myself. 
 
 <img src='Graphs/Bottom_50.png'/>
 
-While healthcare costs have been making up an increasing amount of this nations GDP, the bottom 50% of this nation have been keeping ahold of a decreasing percent of that same GDP. 
+While healthcare costs have been making up an increasing amount of this nations GDP, the bottom 50% of this nation have been earning a decreasing percent of that same GDP.
 
 I am not going to tell you what conclusion this information should bring you to, but I will tell you that if the conclusion you come to is bad, you should probably vote for Bernie Sanders.
