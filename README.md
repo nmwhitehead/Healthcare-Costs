@@ -2,6 +2,9 @@
 
 A while back, I was looking for some real-world data to use to enhance my skills in Supervised Machine Learning with Sklearn  and graphing with Matplotlib. At that time, politics happened to be happening, and the topic of healthcare was brought up. A lot. And so, I searched for and found The National Health Expenditure Accounts (NHEA)'s data on U.S. spending on healthcare since 1960 on [CMS.gov](https://www.cms.gov/Research-Statistics-Data-and-Systems/Statistics-Trends-and-Reports/NationalHealthExpendData/NationalHealthAccountsHistorical)
 
+
+## Graphing Time
+
 After cleaning the data to remove the commas and convert the strings to floats, I did some Exporitory Data Analysis by making some simple graphs to look at how the cost of healthcare has changed. I started with the obvious graph of the total amount of spending per year.
 
 <img src='Graphs/Healthcare_Cost.png'/>
@@ -43,10 +46,6 @@ plt.text(54, healthcare_vs_gdp[-1]+0.5, f'2018: {healthcare_vs_gdp[-1]}%', fonts
 ```
 
 Unlike the costs per year, this data is relatively linear, so I decided to use this to practice Sklearns Linear Regression and Train Test Split. 
-
-
-
-## Graphing Time
 
 I ran the test a few times with varying sizes of the training and testing data to see which ones would overestimate and which would underestimate the percent GDP in 2018
 
@@ -105,11 +104,6 @@ What this means is that trends since the late 80s have pointed towards a faster 
 
 The next step was of course to predict 10 years out (from 2018, not 2020, obviously) with the Linear Regression models we had already created. I ran this a few times with varying amounts of training data, but felt it would be biased to only show a high of a low estimator.
 
-<img src='Graphs/Future_50.png'/>
-
-<img src='Graphs/Future_99.png'/>
-
-
 ```
 # Year and None values to enable graph to look into the future
 X_test_future = np.append(X_test, [[2019], [2020], [2021], [2022], [2023], [2024], [2025], [2026], [2027], [2028]])
@@ -137,6 +131,11 @@ plt.xticks([1960, 1965, 1970, 1975, 1980, 1985, 1990, 1995, 2000, 2005, 2010, 20
 
 plt.text(2020, lr_gdp.predict(X_test_future)[-1]+0.3, f'Predicted: {round(lr_gdp.predict(X_test_future)[-1], 2)}%', fontsize=15);
 ```
+
+<img src='Graphs/Future_50.png'/>
+
+<img src='Graphs/Future_99.png'/>
+
 
 The first graph, which is a continuation of the previous predictor using 50% of the given data as training data, has a much lower estimator for the increase by 2028. I want to make it clear that I do not believe this to be the more accurate estimator, despite is being closer to correct on the costs in 2018. The fact that is uses older data, and less data, is the reason that it greatly underestimated most of the years since the late 80s and was seemingly only correct at the end of flatline years. But I still wanted to leave this graph here as a low estimator.
 
