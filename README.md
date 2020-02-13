@@ -93,9 +93,9 @@ plt.text(2012, y_test[-1]+.3, f'Actual: {round(y_test[-1], 2)}%', fontsize=15)
 plt.text(2011, lr_gdp.predict(X_test)[-1]-0.7, f'Predicted: {round(lr_gdp.predict(X_test)[-1], 2)}%', fontsize=15);
 ```
 
-<img src='Graphs/50%_Predictor.png'/>
+<img src='Graphs/50_Predictor.png'/>
 
-<img src='Graphs/90%_Predictor.png'/>
+<img src='Graphs/90_Predictor.png'/>
 
 As you can see, using 50% of the data as training data underestimated and the 90% overestimated, as did 75% and 60%, but that's more graphs than you need to see. 
 
@@ -105,9 +105,9 @@ What this means is that trends since the late 80s have pointed towards a faster 
 
 The next step was of course to predict 10 years out (from 2018, not 2020, obviously) with the Linear Regression models we had already created. I ran this a few times with varying amounts of training data, but felt it would be biased to only show a high of a low estimator.
 
-<img src='Graphs/Future_50%.png'/>
+<img src='Graphs/Future_50.png'/>
 
-<img src='Graphs/Future_99%.png'/>
+<img src='Graphs/Future_99.png'/>
 
 
 ```
@@ -147,7 +147,7 @@ The second graph, which uses 99% of the data given as training data, has a much 
 
 Until this point, I have made effort to remain unbiased and to provide facts, not opinions. But I’d like to end by posting [one last graph]( https://www.nytimes.com/interactive/2016/12/16/business/economy/nine-new-findings-about-income-inequality-piketty.html), which I didn’t make myself. 
 
-<img src='Graphs/Bottom_50%.png'/>
+<img src='Graphs/Bottom_50.png'/>
 
 While healthcare costs have been making up an increasing amount of this nations GDP, the bottom 50% of this nation have been keeping ahold of a decreasing percent of that same GDP. 
 
